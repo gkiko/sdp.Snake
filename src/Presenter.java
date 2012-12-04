@@ -25,7 +25,7 @@ class Presenter extends JComponent {
 		window.setBounds(30, 30, 600, 600);
 		window.setVisible(true);
 	}
-
+ 
 //	public void showBoard(Board b) {
 //		board = b;
 //		repaint();
