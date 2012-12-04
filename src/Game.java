@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Game {
 	
 	private static final long pauseTime = 500;
@@ -26,6 +28,7 @@ public class Game {
 		while(referee.isAlive(snake)){
 			dir = player.getDirection();
 			snake.move(dir);
+			if(cecxla())snake.grow();
 			gardener.addRemoveFood();
 			presenter.show(board, snake, gardener);
 			pause();
@@ -35,6 +38,14 @@ public class Game {
 	}
 	
 	
+	private boolean cecxla() {
+		ArrayList<Cell> b = (ArrayList<Cell>) snake.getSnakeBody();
+		Cell head = b.get(0);
+		Cell food = gardener.getFoodCell();
+		if(head.getX()==food.getX() && head.getY()==food.getY())return true;
+		return false;
+	}
+
 	private void pause(){
 		try {
 			Thread.sleep(pauseTime);
