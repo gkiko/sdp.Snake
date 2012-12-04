@@ -1,8 +1,11 @@
 public class Gardener {
 	private Cell cell;
-
-	public Gardener(Board b) {
-
+	private Board b;
+	private Snake s;
+	
+	public Gardener(Board b, Snake s) {
+		this.b = b;
+		this.s = s;
 	}
 
 	/**
@@ -11,7 +14,7 @@ public class Gardener {
 	 * mianichebs axal mnishvnelobas.
 	 */
 	public void addRemoveFood() {
-
+		
 	}
 
 	/**
