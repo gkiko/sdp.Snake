@@ -34,9 +34,9 @@ public class Gardener {
 		for(int i=0; i<b.getHeight(); i++){
 			for(int j=0; j<b.getWidth(); j++){
 				c = new Cell(j, i, 3);
-				if(!containsSnake(cell, list)) p++;
+				if(!containsSnake(c, list)) p++;
 				if(p==n){
-					return cell;
+					return c;
 				}
 			}
 		}
@@ -49,10 +49,8 @@ public class Gardener {
 	 * mianichebs axal mnishvnelobas.
 	 */
 	public void addRemoveFood() {
-		if(s.isSnakeAlive()){
-			if(containsSnake(cell, (ArrayList<Cell>)s.getSnakeBody())){
-				cell = getRandomCell();
-			}
+		if(equalsCell(s.getSnakeBody().get(0) , cell)){	
+			cell = getRandomCell();
 		}
 	}
 
