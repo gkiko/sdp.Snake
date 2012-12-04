@@ -1,5 +1,3 @@
-package src;
-
 public class Game {
 	
 	private static final long pauseTime = 500;

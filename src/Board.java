@@ -16,4 +16,5 @@ public class Board {
 	public int getHeight(){
 		return cellBoard.length;
 	}
+	
 }
