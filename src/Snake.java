@@ -6,13 +6,20 @@ public class Snake {
 	private List<Cell> body;
 	private Cell lastCell;
 	private int x0, y0;
-
+	private int initSize = 3;
+	
 	public Snake(Board b) {
 		alive = true;
 		body = new ArrayList<Cell>();
+		initSnake(b);
+	}
+
+	private void initSnake(Board b) {
 		x0 = b.getWidth() / 2;
 		y0 = b.getHeight() / 2;
-		body.add(b.getCellAt(x0, y0));
+		for (int i = 0; i < initSize; i++) {
+			body.add(b.getCellAt(x0+i, y0));
+		}
 	}
 
 	/**
