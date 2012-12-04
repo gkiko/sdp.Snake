@@ -25,12 +25,14 @@ class Presenter extends JComponent implements ActionListener{
 	private Gardener gardener;
 	private Board board;
 	private JTextField field;
+	public String name;
 
 	public Presenter() {
 		window = new JFrame();
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setBounds(30, 30, 600, 600);
 		window.setVisible(true);
+	//	window.add(new JTextField(10));
 	}
 
 	
@@ -55,18 +57,29 @@ class Presenter extends JComponent implements ActionListener{
 
 	}
 	
+	// problema isaa ro odnav gamozraveba unda frames ro gamochndes textfildi
+	//es metodi gamoachens textfilds romelshic chweris emre enters tu daartyamen
+	//public string name gaxdeba es mnishvneloba
 	public void showNameField(){
-		field=new JTextField();
+		field=new JTextField("name",10);
 		field.setSize(10, 60);
-		field.setText("name");
-		window.add(field);
-		field.addActionListener(null);
+		field.setVisible(true);
+		field.setHorizontalAlignment(JTextField.CENTER);
+		JPanel panel=new JPanel();
+		panel.add(field);
+		panel.setVisible(true);		
+	    window.getContentPane().add(panel);
+	    repaint();
+		field.addActionListener(new ActionListener() {
+		      public void actionPerformed(ActionEvent e) {
+		          name=field.getText();
+		          
+		        }
+		      });	
 		
 		
 	}
-	public void actionPerformed(ActionEvent ae) { 
-	      System.out.println(field.getText()); 
-	} 
+	
 
 	public void paint(Graphics g) {
 		g.drawRect(0, 0, getWidth()-1, getHeight()-1);
@@ -80,5 +93,11 @@ class Presenter extends JComponent implements ActionListener{
 			g.fillRect(x, y, width, height);
 		}		
 		
+	}
+
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
 	}
 }
