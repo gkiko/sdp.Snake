@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.util.ArrayList;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -16,8 +17,10 @@ class Presenter extends JComponent {
 	private final int snakeValue = 1;
 	private final int mealValue = 2;
 	private JFrame window;
-	JPanel panel;
+	private Snake snake;
+	private Gardener gardener;
 	private Board board;
+	
 
 	public Presenter() {
 		window = new JFrame();
@@ -35,6 +38,8 @@ class Presenter extends JComponent {
 	
 	public void show(Board b, Snake snake, Gardener gardener) {
 		board = b;
+		this.snake=snake;
+		this.gardener=gardener;
 		repaint();
 		container = (JComponent) window.getContentPane();
 		container.add(this);
@@ -43,26 +48,22 @@ class Presenter extends JComponent {
 	public void showBoardStats(String name, int score, Stat stat) {
 		JLabel label = new JLabel("" + name + " your current score is " + score);
 		label.setHorizontalAlignment(JLabel.RIGHT);
+		
 		window.add(label, BorderLayout.NORTH);
 
 	}
 
 	public void paint(Graphics g) {
-		for (int i = 0; i < board.getWidth(); i++) {
-			for (int j = 0; j < board.getHeight(); j++) {
-				Cell cur = board.getCellAt(i, j);
-				if (cur.getValue() == snakeValue) {// tu snakis nawilia
-					x = cur.getX();
-					y = cur.getY();
-					g.setColor(Color.RED);
-					g.fillRect(x, y, width, height);
-				} else if (cur.getValue() == mealValue) {// tu sachmelia
-					x = cur.getX();
-					y = cur.getY();
-					g.setColor(Color.green);
-					g.fillRect(x, y, width, height);
-				}
-			}
-		}
+		g.drawRect(0, 0, getWidth()-1, getHeight()-1);
+		ArrayList<Cell>body=new ArrayList<>();
+		body=(ArrayList<Cell>) snake.getSnakeBody();
+		for(int i=0;i<body.size();i++){
+			Cell cur=body.get(i);
+			x = cur.getX();
+			y = cur.getY();
+			g.setColor(Color.RED);
+			g.fillRect(x, y, width, height);
+		}		
+		
 	}
 }
