@@ -6,13 +6,20 @@ public class Snake {
 	private List<Cell> body;
 	private Cell lastCell;
 	private int x0, y0;
-
+	private int initSize = 3;
+	
 	public Snake(Board b) {
 		alive = true;
 		body = new ArrayList<Cell>();
+		initSnake(b);
+	}
+
+	private void initSnake(Board b) {
 		x0 = b.getWidth() / 2;
 		y0 = b.getHeight() / 2;
-		body.add(b.getCellAt(x0, y0));
+		for (int i = 0; i < initSize; i++) {
+			body.add(new Cell(x0, y0+i, 1));
+		}
 	}
 
 	/**
@@ -43,18 +50,17 @@ public class Snake {
 	 *            moves snake by one step to given direction
 	 */
 	public void move(Direction direction) {
-		Cell tale = body.remove(body.size() - 1);
-		lastCell = new Cell(tale.getX(), tale.getY(), tale.getValue());
+		Cell tale = body.get(body.size() - 1);
 		Cell head = body.get(0);
 		int x1 = head.getX();
 		int y1 = head.getY();
 
 		switch (direction) {
 		case moveToRight:
-			x1 -= 1;
+			x1 += 1;
 			break;
 		case moveToLeft:
-			x1 += 1;
+			x1 -= 1;
 			break;
 		case moveToDown:
 			y1 += 1;
@@ -67,7 +73,9 @@ public class Snake {
 		}
 
 		if (checkMove(x1, y1)) {
-			body.add(0, tale);
+			body.add(0, new Cell(x1, y1, 1));
+			body.remove(body.size()-1);
+			lastCell = tale;//new Cell(tale.getX(), tale.getY(), tale.getValue());
 		}
 	}
 
@@ -80,7 +88,6 @@ public class Snake {
 	 * @return true if the move is valid, otherwise false
 	 */
 	private boolean checkMove(int x1, int y1) {
-		if (body.size() == 1) return true;
 		Cell second = body.get(1);
 		if(x1 == second.getX() && y1 == second.getY()){
 			return false;

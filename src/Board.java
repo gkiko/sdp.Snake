@@ -1,19 +1,20 @@
 public class Board {
-
-	// qmnis dafas, romelic aris Cell-ebis 2-d array
+	Cell[][] cellBoard;
+	
 	public Board(int rows, int cols) {
-
+		cellBoard = new Cell[rows][cols];
 	}
 
-	public Cell getCellAt(int x, int y) {
-		return null;
+	public Cell getCellAt(int x, int y){
+		return cellBoard[y][x];
 	}
 
-	public int getWidth() {
-		return 0;
+	public int getWidth(){
+		return cellBoard[0].length;
 	}
 
-	public int getHeight() {
-		return 0;
+	public int getHeight(){
+		return cellBoard.length;
 	}
+	
 }
