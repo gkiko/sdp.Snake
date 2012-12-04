@@ -66,9 +66,9 @@ public class Stat {
 	private static boolean isWorthy(int score) {
 		// TODO: implement top 5 check;
 		ArrayList<String> top5 = getTop5List();
-		for(int i=0; i<PLAYER_NUMBER; i++){
+		for(int i=PLAYER_NUMBER-1; i>=0; i--){
 			String tmp = top5.get(i);
-			int tmpScore = Integer.parseInt(tmp.substring(tmp.indexOf(' ')));
+			int tmpScore = Integer.parseInt(tmp.substring(tmp.indexOf(' ')+1));
 			if(score > tmpScore){
 				return true;
 			}
@@ -85,14 +85,15 @@ public class Stat {
 	private static void setInTop5(int score, String name) {
 		// TODO: implement a bufferedWriter to save results in the text file;
 		try {
-			BufferedWriter br = new BufferedWriter(new FileWriter(FILENAME));
 			ArrayList<String> top5 = getTop5List();
+			BufferedWriter br = new BufferedWriter(new FileWriter(FILENAME));
 			for(int i=0; i<PLAYER_NUMBER; i++){
 				String tmp = top5.get(i);
-				int tmpScore = Integer.parseInt(tmp.substring(tmp.indexOf(' ')));
+				int tmpScore = Integer.parseInt(tmp.substring(tmp.indexOf(' ')+1));
 				if(score > tmpScore){
 					top5.add(i, name + " " + score);
 					top5.remove(top5.size()-1);
+					break;
 				}
 			}
 			for(int i=0; i<PLAYER_NUMBER; i++){
