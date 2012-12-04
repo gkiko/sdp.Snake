@@ -11,7 +11,6 @@ public class Cell {
 	}
 
 	public int getX() {
-
 		return this.x;
 	}
 
@@ -21,7 +20,6 @@ public class Cell {
 	}
 
 	public int getValue() {
-
 		return this.value;
 	}
 

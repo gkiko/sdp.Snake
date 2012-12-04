@@ -1,41 +1,47 @@
+package src;
 
 public class Game {
-	private Snake snake;
+	
+	private static final long pauseTime = 500;
+	
 	private Board board;
-	private Referee ref;
-	private Direction dir;
+	private Stat stat;
+	private Snake snake;
 	private Player player;
 	private Gardener gardener;
 	private Presenter presenter;
-	private Stat stat;
+	private Referee referee;
 	
-	public Game(Board b, Stat st, Snake sn, Player pl, Gardener g, Presenter pr){
+	public Game(Board b, Stat st, Snake sn, Player pl, Gardener g, Presenter pr, Referee ref){
 		board = b;
+		stat = st;
 		snake = sn;
-		ref = new Referee(board, snake);
 		player = pl;
 		gardener = g;
 		presenter = pr;
-		stat = new Stat();
+		referee = ref;
 	}
-
+	
+	@SuppressWarnings("static-access")
 	public void Play(){
-	while(ref.isAlive(snake)){
-	dir = player.getDirection();
-	snake.move(dir);
-	gardener.addRemoveFood();
-	presenter.showBoard(board);
-	pause();
+		Direction dir;
+		while(referee.isAlive(snake)){
+			dir = player.getDirection();
+			snake.move(dir);
+			gardener.addRemoveFood();
+			presenter.show(board, snake, gardener);
+			pause();
+		}
+		stat.save(referee.getScore(), player.getName());
+		presenter.showBoardStats(player.getName(), referee.getScore(), stat);
 	}
-	/* !!! */
-	/* Playeris saxeli arsad ar gvchirdeba. qulis damaxsovrebisas bolos chavwert raime velshi */
-		// stat.save(player.getName(), ref.getScore());
-		// presenter.showBoardStats(player.getName(), ref.getScore(), stat);
-
-	}
-
-	private void pause() {
-		// TODO Auto-generated method stub
-		
+	
+	
+	private void pause(){
+		try {
+			Thread.sleep(pauseTime);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 }
