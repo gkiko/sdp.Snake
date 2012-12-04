@@ -1,12 +1,16 @@
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
-class Presenter extends JComponent {
+class Presenter extends JComponent implements ActionListener{
 
 	private int x;
 	private int y;
@@ -20,7 +24,7 @@ class Presenter extends JComponent {
 	private Snake snake;
 	private Gardener gardener;
 	private Board board;
-	
+	private JTextField field;
 
 	public Presenter() {
 		window = new JFrame();
@@ -28,13 +32,7 @@ class Presenter extends JComponent {
 		window.setBounds(30, 30, 600, 600);
 		window.setVisible(true);
 	}
- 
-//	public void showBoard(Board b) {
-//		board = b;
-//		repaint();
-//		container = (JComponent) window.getContentPane();
-//		container.add(this);
-//	}
+
 	
 	public void show(Board b, Snake snake, Gardener gardener) {
 		board = b;
@@ -48,10 +46,27 @@ class Presenter extends JComponent {
 	public void showBoardStats(String name, int score, Stat stat) {
 		JLabel label = new JLabel("" + name + " your current score is " + score);
 		label.setHorizontalAlignment(JLabel.RIGHT);
-		
+		ArrayList<String>names=stat.getTop5List();
 		window.add(label, BorderLayout.NORTH);
+		for(int i=0;i<names.size();i++){
+			JLabel label2=new JLabel(names.get(i)+" ");
+			window.add(label2,BorderLayout.NORTH);
+		}
 
 	}
+	
+	public void showNameField(){
+		field=new JTextField();
+		field.setSize(10, 60);
+		field.setText("name");
+		window.add(field);
+		field.addActionListener(null);
+		
+		
+	}
+	public void actionPerformed(ActionEvent ae) { 
+	      System.out.println(field.getText()); 
+	} 
 
 	public void paint(Graphics g) {
 		g.drawRect(0, 0, getWidth()-1, getHeight()-1);
