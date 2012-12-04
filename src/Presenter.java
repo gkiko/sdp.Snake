@@ -83,8 +83,7 @@ class Presenter extends JComponent implements ActionListener{
 
 	public void paint(Graphics g) {
 		g.drawRect(0, 0, getWidth()-1, getHeight()-1);
-		ArrayList<Cell>body=new ArrayList<>();
-		body=(ArrayList<Cell>) snake.getSnakeBody();
+		ArrayList<Cell>body=(ArrayList<Cell>) snake.getSnakeBody();
 		for(int i=0;i<body.size();i++){
 			Cell cur=body.get(i);
 			x = cur.getX();
