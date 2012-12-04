@@ -18,7 +18,7 @@ public class Snake {
 		x0 = b.getWidth() / 2;
 		y0 = b.getHeight() / 2;
 		for (int i = 0; i < initSize; i++) {
-			body.add(b.getCellAt(x0+i, y0));
+			body.add(new Cell(x0+1, y0, 1));
 		}
 	}
 
@@ -50,7 +50,8 @@ public class Snake {
 	 *            moves snake by one step to given direction
 	 */
 	public void move(Direction direction) {
-		Cell tale = body.remove(body.size() - 1);
+		Cell tale = body.get(body.size() - 1);
+		body.remove(body.size()-1);
 		lastCell = new Cell(tale.getX(), tale.getY(), tale.getValue());
 		Cell head = body.get(0);
 		int x1 = head.getX();
