@@ -30,9 +30,9 @@ public class Snake {
 	 * List
 	 */
 	public void grow() {
-		System.out.println("grow1");
+//		System.out.println("grow1");
 		body.add(lastCell);
-		System.out.println("grow2");
+//		System.out.println("grow2");
 	}
 
 	/**
@@ -57,7 +57,7 @@ public class Snake {
 	public void move(Direction direction) {
 		Cell tale = body.get(body.size() - 1);
 		Cell head = body.get(0);
-		System.out.println("snake: "+head.getX()+" "+head.getY());
+//		System.out.println("snake: "+head.getX()+" "+head.getY());
 		int x1 = head.getX();
 		int y1 = head.getY();
 

@@ -3,9 +3,10 @@ import javax.swing.JFrame;
 
 public class Main{
 	public static void main(String[] args) {
-		Presenter presenter = new Presenter();
+		JFrame j = new JFrame();
+		Presenter presenter = new Presenter(j);
 		Board board = new Board(250, 250);
-		Player pl = new SnakePlayer(new JFrame());
+		Player pl = new SnakePlayer(j);
 		Snake snake = new Snake(board);
 		Referee ref = new Referee(board, snake);
 		Stat st = new Stat();

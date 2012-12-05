@@ -27,8 +27,8 @@ class Presenter extends JComponent implements ActionListener{
 	private JTextField field;
 	public String name;
 
-	public Presenter() {
-		window = new JFrame();
+	public Presenter(JFrame jf) {
+		window = jf;
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setBounds(30, 30, 250, 250);
 		window.setVisible(true);

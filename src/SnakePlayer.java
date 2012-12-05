@@ -15,41 +15,32 @@ public class SnakePlayer extends JComponent implements Player {
 		public SnakePlayer(JFrame jf) {
 			this.jf = jf;
 			jf.add(this);
+			jf.setVisible(true);
 		}
 	
-	public void action() throws InterruptedException {
-		final CountDownLatch latch = new CountDownLatch(1);
-		KeyEventDispatcher dispatcher = new KeyEventDispatcher() {
-			public boolean dispatchKeyEvent(KeyEvent e) {
-				if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-					dir = Direction.moveToDown;
-					latch.countDown();
-				} else if (e.getKeyCode() == KeyEvent.VK_UP) {
-					dir = Direction.moveToUp;
-					latch.countDown();
-				} else if (e.getKeyCode() == KeyEvent.VK_LEFT){
-					dir = Direction.moveToLeft;
-					latch.countDown();
-				}else if (e.getKeyCode() == KeyEvent.VK_RIGHT){
-					dir = Direction.moveToRight;
-					latch.countDown();
-				}
-					return false;
-			}
-		};
-		KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(dispatcher);
-		latch.await();
-		KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventDispatcher(dispatcher);
-	}
 
 	@Override
 	public Direction getDirection() {
-		try {
-			action();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		jf.addKeyListener(new KeyListener() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+			}
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_S) {
+					dir = Direction.moveToDown;
+				} else if (e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A) {
+					dir = Direction.moveToLeft;
+				}else if (e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D) {
+					dir = Direction.moveToRight;
+				}else if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_W) {
+					dir = Direction.moveToUp;
+				}
+			}
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+			}	
+		});
 		return dir;
 	}
-
 }

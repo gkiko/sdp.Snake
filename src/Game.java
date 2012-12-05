@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Game {
 	
-	private static final long pauseTime = 100;
+	private static final long pauseTime = 50;
 	
 	private Board board;
 	private Stat stat;
@@ -29,7 +29,6 @@ public class Game {
 			dir = player.getDirection();
 			snake.move(dir);
 			if(cecxla()){
-				System.out.println("Asdasdasd");
 				gardener.addRemoveFood();
 				snake.grow();
 			}
