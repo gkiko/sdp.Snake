@@ -7,10 +7,13 @@ public class Snake {
 	private Cell lastCell;
 	private int x0, y0;
 	private int initSize = 3;
+	private int width, height;
 	
 	public Snake(Board b) {
 		alive = true;
 		body = new ArrayList<Cell>();
+		width = b.getWidth();
+		height = b.getHeight();
 		initSnake(b);
 	}
 
@@ -27,7 +30,9 @@ public class Snake {
 	 * List
 	 */
 	public void grow() {
+		System.out.println("grow1");
 		body.add(lastCell);
+		System.out.println("grow2");
 	}
 
 	/**
@@ -57,16 +62,16 @@ public class Snake {
 
 		switch (direction) {
 		case moveToRight:
-			x1 += 1;
+			x1 = (x1+1)%width;
 			break;
 		case moveToLeft:
-			x1 -= 1;
+			x1 = (x1-1+width)%width;
 			break;
 		case moveToDown:
-			y1 += 1;
+			y1 = (y1+1)%height;
 			break;
 		case moveToUp:
-			y1 -= 1;
+			y1 = (y1-1+height)%height;
 			break;
 		default:
 			break;

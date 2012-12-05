@@ -2,7 +2,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Gardener {
-	private Cell cell;
+	private Cell cell1;
+	private Cell cell2;
 	private Board b;
 	private Snake s;
 	private Random rg = new Random();
@@ -10,11 +11,12 @@ public class Gardener {
 	public Gardener(Board b, Snake s) {
 		this.b = b;
 		this.s = s;
-		cell = getRandomCell();
+		cell1 = getRandomCell();
+		cell2 = getRandomCell();
 	}
 	
 	private boolean equalsCell(Cell c1, Cell c2){
-		return c1.getX() == c2.getY() && c1.getY() == c2.getY();
+		return c1.getX() == c2.getX() && c1.getY() == c2.getY();
 	}
 	
 	private boolean containsSnake(Cell cell, ArrayList<Cell> list){
@@ -49,15 +51,25 @@ public class Gardener {
 	 * mianichebs axal mnishvnelobas.
 	 */
 	public void addRemoveFood() {
-		if(equalsCell(s.getSnakeBody().get(0) , cell)){	
-			cell = getRandomCell();
+		if(equalsCell(s.getSnakeBody().get(0) , cell1)){	
+			System.out.println("gardener1");
+			cell1 = getRandomCell();
+			System.out.println("gardener2");
+		}
+		if(equalsCell(s.getSnakeBody().get(0) , cell2)){	
+			System.out.println("gardener1");
+			cell2 = getRandomCell();
+			System.out.println("gardener2");
 		}
 	}
 
 	/**
 	 * abrunebs cells
 	 */
-	public Cell getFoodCell() {
-		return cell;
+	public ArrayList<Cell> getFoodCell() {
+		ArrayList<Cell> list= new ArrayList<Cell>();
+		list.add(cell1);
+		list.add(cell2);
+		return list;
 	}
 }

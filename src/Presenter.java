@@ -30,7 +30,7 @@ class Presenter extends JComponent implements ActionListener{
 	public Presenter() {
 		window = new JFrame();
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		window.setBounds(30, 30, 600, 600);
+		window.setBounds(30, 30, 250, 250);
 		window.setVisible(true);
 	//	window.add(new JTextField(10));
 	}
@@ -90,7 +90,17 @@ class Presenter extends JComponent implements ActionListener{
 			y = cur.getY();
 			g.setColor(Color.RED);
 			g.fillRect(x, y, width, height);
-		}		
+		}	
+		
+		ArrayList<Cell> cells=gardener.getFoodCell();
+		for(int i=0;i<cells.size();i++){
+			Cell c=cells.get(i);
+			x = c.getX();
+			y = c.getY();
+			g.setColor(Color.green);
+			g.fillRect(x, y, width, height);
+		}
+		
 		
 	}
 

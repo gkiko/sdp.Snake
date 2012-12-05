@@ -28,10 +28,13 @@ public class Game {
 		while(referee.isAlive(snake)){
 			dir = player.getDirection();
 			snake.move(dir);
-			if(cecxla())snake.grow();
-			gardener.addRemoveFood();
+			if(cecxla()){
+				System.out.println("Asdasdasd");
+				gardener.addRemoveFood();
+				snake.grow();
+			}
 			presenter.show(board, snake, gardener);
-			pause();
+//			pause();
 		}
 		stat.save(referee.getScore(), player.getName());
 		presenter.showBoardStats(player.getName(), referee.getScore(), stat);
@@ -41,8 +44,10 @@ public class Game {
 	private boolean cecxla() {
 		ArrayList<Cell> b = (ArrayList<Cell>) snake.getSnakeBody();
 		Cell head = b.get(0);
-		Cell food = gardener.getFoodCell();
-		if(head.getX()==food.getX() && head.getY()==food.getY())return true;
+		ArrayList<Cell> l = gardener.getFoodCell();
+		for (int i = 0; i < l.size(); i++) {
+			if(head.getX()==l.get(i).getX() && head.getY()==l.get(i).getY())return true;
+		}
 		return false;
 	}
 

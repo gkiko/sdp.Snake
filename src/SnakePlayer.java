@@ -1,4 +1,3 @@
-package classes;
 
 import java.awt.KeyEventDispatcher;
 import java.awt.KeyboardFocusManager;
@@ -44,7 +43,7 @@ public class SnakePlayer extends JComponent implements Player {
 	}
 
 	@Override
-	public Direction getDircetion() {
+	public Direction getDirection() {
 		try {
 			action();
 		} catch (InterruptedException e) {

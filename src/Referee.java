@@ -12,7 +12,7 @@ public class Referee {
 		HashSet<String> set = new HashSet<String>();
 		for(int i=0; i<snakeBody.size(); i++){
 			Cell current = snakeBody.get(i);
-			if(!isInBounds(current)) return false;
+	//		if(!isInBounds(current)) return false;
 			String key = toKey(current);
 			if(set.contains(key)) return false;
 			set.add(key);
