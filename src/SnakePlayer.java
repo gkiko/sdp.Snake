@@ -9,7 +9,7 @@ import javax.swing.*;
 public class SnakePlayer extends JComponent implements Player {
 
 	private final String UP = "UP", DOWN = "DOWN", LEFT = "LEFT", RIGHT = "RIGHT";
-	private Direction dir;
+	private Direction dir = Direction.moveToUp;
 	private final JFrame jf;
 	
 		public SnakePlayer(JFrame jf) {

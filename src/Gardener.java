@@ -51,15 +51,19 @@ public class Gardener {
 	 * mianichebs axal mnishvnelobas.
 	 */
 	public void addRemoveFood() {
-		if(equalsCell(s.getSnakeBody().get(0) , cell1)){	
-			System.out.println("gardener1");
+	//	if(equalsCell(s.getSnakeBody().get(0) , cell1)){
+		if(containsSnake(cell1, (ArrayList<Cell>)s.getSnakeBody())){
+		//	System.out.println("gardener1");
 			cell1 = getRandomCell();
-			System.out.println("gardener2");
+			System.out.println(cell1.getX()+" "+cell1.getY());
+		//	System.out.println("gardener2");
 		}
-		if(equalsCell(s.getSnakeBody().get(0) , cell2)){	
-			System.out.println("gardener1");
+		//if(equalsCell(s.getSnakeBody().get(0) , cell2)){	
+		if(containsSnake(cell2, (ArrayList<Cell>)s.getSnakeBody())){
+		//	System.out.println("gardener1");
 			cell2 = getRandomCell();
-			System.out.println("gardener2");
+			System.out.println(cell2.getX()+" "+cell2.getY());
+		//	System.out.println("gardener2");
 		}
 	}
 

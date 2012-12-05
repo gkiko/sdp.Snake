@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Game {
 	
-	private static final long pauseTime = 500;
+	private static final long pauseTime = 100;
 	
 	private Board board;
 	private Stat stat;
@@ -34,7 +34,7 @@ public class Game {
 				snake.grow();
 			}
 			presenter.show(board, snake, gardener);
-//			pause();
+			pause();
 		}
 		stat.save(referee.getScore(), player.getName());
 		presenter.showBoardStats(player.getName(), referee.getScore(), stat);
