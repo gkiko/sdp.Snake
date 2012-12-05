@@ -11,7 +11,7 @@ public class Stat {
 	// The name of the file the results are saved in;
 	private static final String FILENAME = "top5.txt";
 	
-	private static final int PLAYER_NUMBER = 5;
+	private static final int PLAYER_NUMBER = 10;
 	private static final String EMPTY = "empty 0";
 
 	/**
